@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css">
+    <script src="controle.js"></script>
+    <title>Formulaire d'inscription</title>
+    <style>
+      /* Ajouter des styles CSS ici si nécessaire */
+    </style>
+  </head>
+  <body>
+    <header class="elrass">
+        <div class="block">
+            <img src="photo1.jpg" alt="Photo 1">
+        </div>
+        <div class="block middle-block">
+            <p class="text-tete">FORMULAIRE DE SOUSCRIPTION</p>
+        </div>
+        <div class="block">
+            <img src="photo2.jpg" alt="Photo 2">
+        </div>
+    </header>
+    <div class="container">
+        <form id="subscriptionForm">
+            <div class="mb-3">
+                <div class="row">
+                    <div class="classA">
+                        <label for="civility" class="form-label">Civilité*</label>
+                        <select class="form-control form1" id="civility" name="civility">
+                            <option value="">Choisissez...</option>
+                            <option value="Monsieur">Monsieur</option>
+                            <option value="Madame">Madame</option>
+                        </select>
+                        <div id="civilityError" class="error-message"></div>
+                    </div>
+                    <div class="classB">
+                        <label for="nom" class="form-label">Nom*</label>
+                        <input type="text" class="form-control" id="nom" name="nom" onblur="verif()">
+                        <div id="nomError" class="error-message"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="row">
+                    <div class="classA">
+                        <label for="prenom" class="form-label">Prénom*</label>
+                        <input type="text" class="form-control" id="prenom" name="Prénom">
+                        <div id="prenomError" class="error-message"></div>
+                    </div>
+                    <div class="classB">
+                        <label for="nomNaissance" class="form-label">Nom de naissance*</label>
+                        <input type="text" class="form-control twila" id="nomNaissance" name="nomNaissance">
+                        <div id="nomNaissanceError" class="error-message"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="row">
+                    <div class="classA">
+                        <label for="fixe" class="form-label">Numéro de téléphone fixe</label>
+                        <input type="tel" class="form-control twila" id="fixe" name="fixe">
+                        <div id="fixeError" class="error-message"></div>
+                    </div>
+                    <div class="classB">
+                        <label for="mobile" class="form-label">Numéro de téléphone mobile*</label>
+                        <input type="tel" class="form-control twila" id="mobile" name="mobile">
+                        <div id="mobileError" class="error-message"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="row addr">
+                    <div class="classA" style="width: 100%; margin-bottom: 2%;">
+                        <label for="adresse" class="form-label addrDimension" >Adresse*</label>
+                        <input type="text" class="form-control adrs" id="adresse" name="adresse">
+                        <div id="adresseError" class="error-message"></div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 4%;">
+                    <div class="classA">
+                        <label for="codePostal" class="form-label">Code postal*</label>
+                        <input type="text" class="form-control" id="codePostal" name="codePostal">
+                        <div id="codePostalError" class="error-message"></div>
+                    </div>
+                    <div class="classB">
+                        <label for="ville" class="form-label">Ville*</label>
+                        <input type="text" class="form-control" id="ville" name="ville">
+                        <div id="villeError" class="error-message"></div>
+                    </div>
+                </div>
+    
+            </div>
+            <div class="mb-3">
+                <div class="row">
+                    <div class="classA">
+                        <label for="dateNaissance" class="form-label">Date de naissance*</label>
+                        <input type="date" class="form-control twila" id="dateNaissance" name="dateNaissance">
+                        <div id="dateNaissanceError" class="error-message"></div>
+                    </div>
+                    
+                    <div class="classB">
+                        <label for="email" class="form-label">Email*</label>
+                        <input type="email" class="form-control" id="email" name="email">
+                        <div id="emailError" class="error-message"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="lieuNaissance" class="form-label">Lieu de naissance*</label>
+                <input type="text" class="form-control " id="lieuNaissance" style="width: 98%;" name="lieuNaissance">
+                <div id="lieuNaissanceError" class="error-message"></div>
+            </div>
+
+
+
+
+            <div class="card mb-4">
+                <div class="card-header">
+                    Médecin traitant
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="medecinTraitant" class="form-label">Nom du Médecin traitant</label>
+                            <input type="text" class="form-control twila" id="medecinTraitant" name="medecinTraitant">
+                            <div id="medecinTraitantError" class="error-message"></div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="villemedecinTraitant" class="form-label">Ville du Médecin traitant</label>
+                            <input type="text" class="form-control twila" id="villemedecinTraitant" name="villemedecinTraitant">
+                            <div id="villeMedecinError" class="error-message"></div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <input type="checkbox" id="pasdemedicin" class="form-check-input" name="pasdemedicin">
+                        <label for="pasdemedicin" class="form-check-label">Pas de médecin traitant</label>
+                    </div>
+                    <div class="mb-3">
+                        <label>Acceptez-vous que le médecin traitant consulte votre dossier médical ?*</label><br>
+                        <input type="radio" id="dossierMedicalOui" name="medicinmedical" value="oui">
+                        <label for="dossierMedicalOui">Oui</label><br>
+                        <input type="radio" id="dossierMedicalNon" name="medicinmedical" value="non">
+                        <label for="dossierMedicalNon">Non</label>
+                        <div id="dossierMedicalError" class="error-message"></div>
+                    </div>
+                </div>
+            </div>
+            
+
+
+
+
+
+
+
+
+            <div id="tiersContainer">
+                <div id="blockContainer">
+                    <div class="card mb-4" id="block1">
+                        <div class="card-header">
+                            <h5>Tiers de confiance 1</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3 mb-1">
+                                    <input type="checkbox" class="form-check-input" name="famille[0]" id="famille1">
+                                    <label for="famille1" class="form-label">Famille</label>
+                                </div>
+                                <div class="col-md-3 mb-1">
+                                    <input type="checkbox" class="form-check-input" name="amis[0]" id="amis1">
+                                    <label for="amis1" class="form-label">Amis</label>
+                                </div>
+                                <div class="col-md-3 mb-1">
+                                    <input type="checkbox" class="form-check-input" name="auxiliaire[0]" id="auxiliaire1">
+                                    <label for="auxiliaire1" class="form-label">Auxiliaire de vie</label>
+                                </div>
+                                <div class="col-md-3 mb-1">
+                                    <input type="checkbox" class="form-check-input" name="voisins[0]" id="voisins1">
+                                    <label for="voisins1" class="form-label">Voisins</label>
+                                </div>
+                            </div>
+    
+                            <div class="row">
+                                <div class="classA">
+                                    <label for="ordrePreference1" class="form-label">ordre de préférence*</label>
+                                    <input type="tel" class="form-control" id="telephone1" name="ordrePreference1">
+                                    <div id="telephone1Error" class="error-message"></div>
+                                </div>
+                                <div class="classB">
+                                    <label for="nom1" class="form-label">Nom*</label>
+                                    <input type="text" class="form-control" id="nom1" name="nom1">
+                                    <div id="nom1Error" class="error-message"></div>
+                                </div>
+                                
+                            </div>
+    
+                            <div class="row">
+                                <div class="classA">
+                                    <label for="prenom1" class="form-label">Prénom*</label>
+                                    <input type="text" class="form-control" id="prenom1" name="prenom1">
+                                    <div id="prenom1Error" class="error-message"></div>
+                                </div>
+                                
+                                <div class="classB">
+                                    <label for="email1" class="form-label">Email*</label>
+                                    <input type="email" class="form-control" id="email1" name="email1">
+                                    <div id="email1Error" class="error-message"></div>
+                                </div>
+                                
+                            </div>
+                            <div class="row">
+                                <div class="classA">
+                                    <label for="telephone1" class="form-label">Téléphone*</label>
+                                    <input type="tel" class="form-control" id="telephone1" name="telephone1">
+                                    <div id="telephone1Error" class="error-message"></div>
+                                </div>
+                                <div class="classB">
+                                    <label for="proximiteDomicile1" class="form-label">Proximité du domicile*</label>
+                                    <input type="text" class="form-control twila" id="proximiteDomicile1" name="proximiteDomicile1">
+                                    <div id="proximiteDomicile1Error" class="error-message"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button"  id="addTiersButton" style="border: none;background:white;"><span  style="font-size: 1.34em;">Ajouter un tiers de confiance</span> </button><br>
+            <br><br><br><button type="submit" class="btn btn-primary" id="submitBtn">Soumettre</button>
+        </form>
+    </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    function validateForm() {
+        let isValid = true;
+
+        // Réinitialisation des erreurs
+        document.querySelectorAll(".error-message").forEach(e => e.innerHTML = "");
+        document.querySelectorAll(".form-control").forEach(e => e.style.borderColor = "");
+
+        // Récupération des éléments
+        const civility = document.getElementById("civility");
+        const nom = document.getElementById("nom");
+        const prenom = document.getElementById("prenom");
+        const mobile = document.getElementById("mobile");
+        const adresse = document.getElementById("adresse");
+        const codePostal = document.getElementById("codePostal");
+        const ville = document.getElementById("ville");
+        const dateNaissance = document.getElementById("dateNaissance");
+        const email = document.getElementById("email");
+        const lieuNaissance = document.getElementById("lieuNaissance");
+        const medecinTraitant = document.getElementById("medecinTraitant");
+        const villemedecinTraitant = document.getElementById("villemedecinTraitant");
+        const dossierMedicalOui = document.getElementById("dossierMedicalOui");
+        const dossierMedicalNon = document.getElementById("dossierMedicalNon");
+        const pasdemedicin = document.getElementById("pasdemedicin");
+
+        // Validation des champs requis
+        if (civility.value === "") {
+            document.getElementById("civilityError").innerHTML = "Veuillez choisir une civilité.";
+            isValid = false;
+        }
+        if (nom.value.trim() === "") {
+            nom.style.borderColor = "red";
+            document.getElementById("nomError").innerHTML = "Le nom est requis.";
+            isValid = false;
+        }
+        if (prenom.value.trim() === "") {
+            prenom.style.borderColor = "red";
+            document.getElementById("prenomError").innerHTML = "Le prénom est requis.";
+            isValid = false;
+        }
+        if (mobile.value.trim() === "") {
+            mobile.style.borderColor = "red";
+            document.getElementById("mobileError").innerHTML = "Le numéro de téléphone mobile est requis.";
+            isValid = false;
+        }
+        if (adresse.value.trim() === "") {
+            adresse.style.borderColor = "red";
+            document.getElementById("adresseError").innerHTML = "L'adresse est requise.";
+            isValid = false;
+        }
+        if (codePostal.value.trim() === "") {
+            codePostal.style.borderColor = "red";
+            document.getElementById("codePostalError").innerHTML = "Le code postal est requis.";
+            isValid = false;
+        }
+        if (ville.value.trim() === "") {
+            ville.style.borderColor = "red";
+            document.getElementById("villeError").innerHTML = "La ville est requise.";
+            isValid = false;
+        }
+        if (dateNaissance.value === "") {
+            dateNaissance.style.borderColor = "red";
+            document.getElementById("dateNaissanceError").innerHTML = "La date de naissance est requise.";
+            isValid = false;
+        }
+        if (email.value.trim() === "") {
+            email.style.borderColor = "red";
+            document.getElementById("emailError").innerHTML = "L'email est requis.";
+            isValid = false;
+        }
+        if (lieuNaissance.value.trim() === "") {
+            lieuNaissance.style.borderColor = "red";
+            document.getElementById("lieuNaissanceError").innerHTML = "Le lieu de naissance est requis.";
+            isValid = false;
+        }
+
+        // Médecin traitant
+        
+            if (medecinTraitant.value.trim() === "") {
+                medecinTraitant.style.borderColor = "red";
+                document.getElementById("medecinTraitantError").innerHTML = "Le nom du médecin traitant est requis.";
+                isValid = false;
+            }
+            if (villemedecinTraitant.value.trim() === "") {
+                villemedecinTraitant.style.borderColor = "red";
+                document.getElementById("villeMedecinError").innerHTML = "La ville du médecin traitant est requise.";
+                isValid = false;
+            }
+            if (!dossierMedicalOui.checked && !dossierMedicalNon.checked) {
+                document.getElementById("dossierMedicalError").innerHTML = "Veuillez indiquer si vous acceptez que le médecin traitant consulte votre dossier médical.";
+                isValid = false;
+            }
+        // Validation des blocs de tiers de confiance
+        const blockContainers = document.querySelectorAll("#blockContainer .card");
+
+        blockContainers.forEach((block, index) => {
+            const ordrePreference = block.querySelector(`#ordrePreference${index + 1}`);
+            const nom = block.querySelector(`#nomTiers${index + 1}`);
+            const prenom = block.querySelector(`#prenomTiers${index + 1}`);
+            const email = block.querySelector(`#emailTiers${index + 1}`);
+            const telephone = block.querySelector(`#telephoneTiers${index + 1}`);
+            const proximiteDomicile = block.querySelector(`#proximiteDomicile${index + 1}`);
+
+            let blockValid = true;
+
+            if (ordrePreference.value.trim() === "") {
+                ordrePreference.style.borderColor = "red";
+                block.querySelector(`#ordrePreference${index + 1}Error`).innerHTML = "L'ordre de préférence est requis.";
+                blockValid = false;
+            }
+            if (nom.value.trim() === "") {
+                nom.style.borderColor = "red";
+                block.querySelector(`#nomTiers${index + 1}Error`).innerHTML = "Le nom est requis.";
+                blockValid = false;
+            }
+            if (prenom.value.trim() === "") {
+                prenom.style.borderColor = "red";
+                block.querySelector(`#prenomTiers${index + 1}Error`).innerHTML = "Le prénom est requis.";
+                blockValid = false;
+            }
+            if (email.value.trim() === "") {
+                email.style.borderColor = "red";
+                block.querySelector(`#emailTiers${index + 1}Error`).innerHTML = "L'email est requis.";
+                blockValid = false;
+            }
+            if (telephone.value.trim() === "") {
+                telephone.style.borderColor = "red";
+                block.querySelector(`#telephoneTiers${index + 1}Error`).innerHTML = "Le téléphone est requis.";
+                blockValid = false;
+            }
+            if (proximiteDomicile.value.trim() === "") {
+                proximiteDomicile.style.borderColor = "red";
+                block.querySelector(`#proximiteDomicile${index + 1}Error`).innerHTML = "La proximité du domicile est requise.";
+                blockValid = false;
+            }
+
+            if (!blockValid) {
+                isValid = false;
+            }
+        });
+
+        return isValid;
+    }
+
+
+    // Validation avant soumission
+    document.getElementById("subscriptionForm").addEventListener("submit", function (event) {
+        if (!validateForm()) {
+            event.preventDefault();
+        }
+    });
+
+    // Appel de validation pour les autres interactions si nécessaire
+    document.querySelectorAll(".form-control").forEach(input => {
+        input.addEventListener("blur", validateForm);
+    });
+    document.querySelectorAll("input[type='radio']").forEach(input => {
+        input.addEventListener("change", validateForm);
+    });
+    document.getElementById("pasdemedicin").addEventListener("change", validateForm);
+});
+
+</script>
+    <script>
+        document.getElementById("addTiersButton").addEventListener("click", function () {
+            const container = document.getElementById("blockContainer");
+            const blockCount = container.children.length + 1;
+
+            const newBlock = document.createElement("div");
+            newBlock.className = "card mb-4";
+            newBlock.id = `block${blockCount}`;
+
+            newBlock.innerHTML = `
+                <div class="card-header">
+                    <h5>Tiers de confiance ${blockCount}</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3 mb-1">
+                            <input type="checkbox" class="form-check-input" name="tiersType[${blockCount - 1}]" id="famille${blockCount}" value="famille">
+                            <label for="famille${blockCount}" class="form-label">Famille</label>
+                        </div>
+                        <div class="col-md-3 mb-1">
+                            <input type="checkbox" class="form-check-input" name="tiersType[${blockCount - 1}]" id="amis${blockCount}" value="amis">
+                            <label for="amis${blockCount}" class="form-label">Amis</label>
+                        </div>
+                        <div class="col-md-3 mb-1">
+                            <input type="checkbox" class="form-check-input" name="tiersType[${blockCount - 1}]" id="auxiliaire${blockCount}" value="auxiliaire">
+                            <label for="auxiliaire${blockCount}" class="form-label">Auxiliaire de vie</label>
+                        </div>
+                        <div class="col-md-3 mb-1">
+                            <input type="checkbox" class="form-check-input" name="tiersType[${blockCount - 1}]" id="voisins${blockCount}" value="voisins">
+                            <label for="voisins${blockCount}" class="form-label">Voisins</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="ordrePreference${blockCount}" class="form-label">Ordre de préférence*</label>
+                            <input type="text" class="form-control" id="ordrePreference${blockCount}" name="ordrePreference[${blockCount - 1}]">
+                            <div id="ordrePreference${blockCount}Error" class="error-message"></div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="nomTiers${blockCount}" class="form-label">Nom*</label>
+                            <input type="text" class="form-control" id="nomTiers${blockCount}" name="nomTiers[${blockCount - 1}]">
+                            <div id="nomTiers${blockCount}Error" class="error-message"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="prenomTiers${blockCount}" class="form-label">Prénom*</label>
+                            <input type="text" class="form-control" id="prenomTiers${blockCount}" name="prenomTiers[${blockCount - 1}]">
+                            <div id="prenomTiers${blockCount}Error" class="error-message"></div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="emailTiers${blockCount}" class="form-label">Email*</label>
+                            <input type="email" class="form-control" id="emailTiers${blockCount}" name="emailTiers[${blockCount - 1}]">
+                            <div id="emailTiers${blockCount}Error" class="error-message"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="telephoneTiers${blockCount}" class="form-label">Téléphone*</label>
+                            <input type="tel" class="form-control" id="telephoneTiers${blockCount}" name="telephoneTiers[${blockCount - 1}]">
+                            <div id="telephoneTiers${blockCount}Error" class="error-message"></div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="proximiteDomicile${blockCount}" class="form-label">Proximité du domicile*</label>
+                            <input type="text" class="form-control" id="proximiteDomicile${blockCount}" name="proximiteDomicile[${blockCount - 1}]">
+                            <div id="proximiteDomicile${blockCount}Error" class="error-message"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            container.appendChild(newBlock);
+        });
+
+        
+    </script>
+    <script src="Ajax.js"></script>
+</body>
+</html>
