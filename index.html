@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
+
+
+
+
+
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="index.css">
@@ -17,6 +23,7 @@
         </div>
         <div class="block middle-block">
             <p class="text-tete">FORMULAIRE DE SOUSCRIPTION</p>
+
         </div>
         <div class="block">
             <img src="photo2.jpg" alt="Photo 2">
@@ -24,7 +31,20 @@
     </header>
     <div class="container">
         <form id="subscriptionForm">
-            <div class="mb-3">
+            <div class="mb-3" style="margin-bottom: 150px;">
+                <div class="row">
+                    <div class="classA" style="float: left;">
+                        <label for="Date" class="form-label">Date*</label>
+                        <input type="date" class="form-control" id="Date" name="Date" style="width: 25%;">
+                        <div id="DateError" class="error-message"></div>
+                    </div>
+                    <div class="classB" style="float: right;">
+                        <label for="Ref" class="form-label">Ref*</label>
+                        <input type="text" class="form-control" id="Ref" name="Ref" style="width: 25%;">
+                        <div id="RefError" class="error-message"></div>
+                    </div>
+            </div>
+            <div class="mb-3" style="margin-top: 20px;">
                 <div class="row">
                     <div class="classA">
                         <label for="civility" class="form-label">Civilité*</label>
@@ -79,7 +99,7 @@
                     </div>
                 </div>
 
-                <div class="row" style="margin-top: 4%;">
+                <div class="row" style="margin-top: 6%;">
                     <div class="classA">
                         <label for="codePostal" class="form-label">Code postal*</label>
                         <input type="text" class="form-control" id="codePostal" name="codePostal">
@@ -181,13 +201,15 @@
                                     <input type="checkbox" class="form-check-input" name="voisins[0]" id="voisins1">
                                     <label for="voisins1" class="form-label">Voisins</label>
                                 </div>
+                                <div id="CHEAK" class="error-message"></div>
+
                             </div>
     
                             <div class="row">
                                 <div class="classA">
                                     <label for="ordrePreference1" class="form-label">ordre de préférence*</label>
-                                    <input type="tel" class="form-control" id="telephone1" name="ordrePreference1">
-                                    <div id="telephone1Error" class="error-message"></div>
+                                    <input type="tel" class="form-control" id="ordrePreference1" name="ordrePreference1">
+                                    <div id="ordrePreference1Error" class="error-message"></div>
                                 </div>
                                 <div class="classB">
                                     <label for="nom1" class="form-label">Nom*</label>
@@ -223,255 +245,48 @@
                                     <div id="proximiteDomicile1Error" class="error-message"></div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="classA">
+                                    <span for="cheak1" class="form-label">Accepter-vous que cette personne co-administre votre dossier ?</span><br>
+                                    <label for="cheak1">Oui</label>
+                                    <input type="radio" class="form-check-input" id="cheak1" name="acc1" value="oui">
+                                    <label for="cheak2">Non</label>
+                                    <input type="radio" class="form-check-input" id="cheak2" name="acc1" value="non">
+                                    <div id="cheak1Error" class="error-message"></div>
+                                </div>
+                                <div class="classB">
+                                    <span for="cheak3" class="form-label">Accepter-vous que cette personne soit prévenu en cas d'alerte médicale ?</span><br>
+                                    <label for="cheak3">Oui</label>
+                                    <input type="radio" class="form-check-input" id="cheak3" name="acc2" value="oui">
+                                    <label for="cheak4">Non</label>
+                                    <input type="radio" class="form-check-input" id="cheak4" name="acc2" value="non">
+                                    <div id="cheak2Error" class="error-message"></div>
+                                </div>
+                            </div>
+                            
+
                         </div>
                     </div>
                 </div>
             </div>
+            <svg width="30" height="30" fill="none" stroke="currentColor" style="margin-left: 10px;" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14 19c3.771 0 5.657 0 6.828-1.172C22 16.657 22 14.771 22 11c0-3.771 0-5.657-1.172-6.828C19.657 3 17.771 3 14 3h-4C6.229 3 4.343 3 3.172 4.172 2 5.343 2 7.229 2 11c0 3.771 0 5.657 1.172 6.828.653.654 1.528.943 2.828 1.07"></path>
+                <path d="M14 19c-1.236 0-2.598.5-3.841 1.145-1.998 1.037-2.997 1.556-3.489 1.225-.492-.33-.399-1.355-.212-3.404L6.5 17.5"></path>
+                <path d="M15 11H9"></path>
+                <path d="M12 8v6"></path>
+              </svg>
+            <button type="button"  id="addTiersButton" style="border: none;background:white;"><span  style="font-size: 1.5em;margin-top: -5px;color: blue;text-decoration: underline;">Ajouter un tiers de confiance</span> </button><br>
+            <br><br><br>
+            <div style="margin-bottom: 50px;">
+                <input type="checkbox" name="acceptez1" id="acceptez1"  style="width: 20px;height: 20px;margin-left: 20px;"> <span style="font-size: 1.5em;">J'accepte les conditions générales de services</span> <br>
+                <input type="checkbox" name="acceptez2" id="acceptez2"  style="width: 20px;height: 20px;margin-left: 20px;"> <span style="font-size: 1.5em;">J'accepte de recevoir des emails de la  société SunWaves MedTech</span>
 
-            <button type="button"  id="addTiersButton" style="border: none;background:white;"><span  style="font-size: 1.34em;">Ajouter un tiers de confiance</span> </button><br>
-            <br><br><br><button type="submit" class="btn btn-primary" id="submitBtn">Soumettre</button>
+            </div>
+            <center><button type="submit" class="btn btn-primary" id="submitBtn">Soumettre</button></center>
         </form>
     </div>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-    function validateForm() {
-        let isValid = true;
 
-        // Réinitialisation des erreurs
-        document.querySelectorAll(".error-message").forEach(e => e.innerHTML = "");
-        document.querySelectorAll(".form-control").forEach(e => e.style.borderColor = "");
-
-        // Récupération des éléments
-        const civility = document.getElementById("civility");
-        const nom = document.getElementById("nom");
-        const prenom = document.getElementById("prenom");
-        const mobile = document.getElementById("mobile");
-        const adresse = document.getElementById("adresse");
-        const codePostal = document.getElementById("codePostal");
-        const ville = document.getElementById("ville");
-        const dateNaissance = document.getElementById("dateNaissance");
-        const email = document.getElementById("email");
-        const lieuNaissance = document.getElementById("lieuNaissance");
-        const medecinTraitant = document.getElementById("medecinTraitant");
-        const villemedecinTraitant = document.getElementById("villemedecinTraitant");
-        const dossierMedicalOui = document.getElementById("dossierMedicalOui");
-        const dossierMedicalNon = document.getElementById("dossierMedicalNon");
-        const pasdemedicin = document.getElementById("pasdemedicin");
-
-        // Validation des champs requis
-        if (civility.value === "") {
-            document.getElementById("civilityError").innerHTML = "Veuillez choisir une civilité.";
-            isValid = false;
-        }
-        if (nom.value.trim() === "") {
-            nom.style.borderColor = "red";
-            document.getElementById("nomError").innerHTML = "Le nom est requis.";
-            isValid = false;
-        }
-        if (prenom.value.trim() === "") {
-            prenom.style.borderColor = "red";
-            document.getElementById("prenomError").innerHTML = "Le prénom est requis.";
-            isValid = false;
-        }
-        if (mobile.value.trim() === "") {
-            mobile.style.borderColor = "red";
-            document.getElementById("mobileError").innerHTML = "Le numéro de téléphone mobile est requis.";
-            isValid = false;
-        }
-        if (adresse.value.trim() === "") {
-            adresse.style.borderColor = "red";
-            document.getElementById("adresseError").innerHTML = "L'adresse est requise.";
-            isValid = false;
-        }
-        if (codePostal.value.trim() === "") {
-            codePostal.style.borderColor = "red";
-            document.getElementById("codePostalError").innerHTML = "Le code postal est requis.";
-            isValid = false;
-        }
-        if (ville.value.trim() === "") {
-            ville.style.borderColor = "red";
-            document.getElementById("villeError").innerHTML = "La ville est requise.";
-            isValid = false;
-        }
-        if (dateNaissance.value === "") {
-            dateNaissance.style.borderColor = "red";
-            document.getElementById("dateNaissanceError").innerHTML = "La date de naissance est requise.";
-            isValid = false;
-        }
-        if (email.value.trim() === "") {
-            email.style.borderColor = "red";
-            document.getElementById("emailError").innerHTML = "L'email est requis.";
-            isValid = false;
-        }
-        if (lieuNaissance.value.trim() === "") {
-            lieuNaissance.style.borderColor = "red";
-            document.getElementById("lieuNaissanceError").innerHTML = "Le lieu de naissance est requis.";
-            isValid = false;
-        }
-
-        // Médecin traitant
-        
-            if (medecinTraitant.value.trim() === "") {
-                medecinTraitant.style.borderColor = "red";
-                document.getElementById("medecinTraitantError").innerHTML = "Le nom du médecin traitant est requis.";
-                isValid = false;
-            }
-            if (villemedecinTraitant.value.trim() === "") {
-                villemedecinTraitant.style.borderColor = "red";
-                document.getElementById("villeMedecinError").innerHTML = "La ville du médecin traitant est requise.";
-                isValid = false;
-            }
-            if (!dossierMedicalOui.checked && !dossierMedicalNon.checked) {
-                document.getElementById("dossierMedicalError").innerHTML = "Veuillez indiquer si vous acceptez que le médecin traitant consulte votre dossier médical.";
-                isValid = false;
-            }
-        // Validation des blocs de tiers de confiance
-        const blockContainers = document.querySelectorAll("#blockContainer .card");
-
-        blockContainers.forEach((block, index) => {
-            const ordrePreference = block.querySelector(`#ordrePreference${index + 1}`);
-            const nom = block.querySelector(`#nomTiers${index + 1}`);
-            const prenom = block.querySelector(`#prenomTiers${index + 1}`);
-            const email = block.querySelector(`#emailTiers${index + 1}`);
-            const telephone = block.querySelector(`#telephoneTiers${index + 1}`);
-            const proximiteDomicile = block.querySelector(`#proximiteDomicile${index + 1}`);
-
-            let blockValid = true;
-
-            if (ordrePreference.value.trim() === "") {
-                ordrePreference.style.borderColor = "red";
-                block.querySelector(`#ordrePreference${index + 1}Error`).innerHTML = "L'ordre de préférence est requis.";
-                blockValid = false;
-            }
-            if (nom.value.trim() === "") {
-                nom.style.borderColor = "red";
-                block.querySelector(`#nomTiers${index + 1}Error`).innerHTML = "Le nom est requis.";
-                blockValid = false;
-            }
-            if (prenom.value.trim() === "") {
-                prenom.style.borderColor = "red";
-                block.querySelector(`#prenomTiers${index + 1}Error`).innerHTML = "Le prénom est requis.";
-                blockValid = false;
-            }
-            if (email.value.trim() === "") {
-                email.style.borderColor = "red";
-                block.querySelector(`#emailTiers${index + 1}Error`).innerHTML = "L'email est requis.";
-                blockValid = false;
-            }
-            if (telephone.value.trim() === "") {
-                telephone.style.borderColor = "red";
-                block.querySelector(`#telephoneTiers${index + 1}Error`).innerHTML = "Le téléphone est requis.";
-                blockValid = false;
-            }
-            if (proximiteDomicile.value.trim() === "") {
-                proximiteDomicile.style.borderColor = "red";
-                block.querySelector(`#proximiteDomicile${index + 1}Error`).innerHTML = "La proximité du domicile est requise.";
-                blockValid = false;
-            }
-
-            if (!blockValid) {
-                isValid = false;
-            }
-        });
-
-        return isValid;
-    }
-
-
-    // Validation avant soumission
-    document.getElementById("subscriptionForm").addEventListener("submit", function (event) {
-        if (!validateForm()) {
-            event.preventDefault();
-        }
-    });
-
-    // Appel de validation pour les autres interactions si nécessaire
-    document.querySelectorAll(".form-control").forEach(input => {
-        input.addEventListener("blur", validateForm);
-    });
-    document.querySelectorAll("input[type='radio']").forEach(input => {
-        input.addEventListener("change", validateForm);
-    });
-    document.getElementById("pasdemedicin").addEventListener("change", validateForm);
-});
-
-</script>
-    <script>
-        document.getElementById("addTiersButton").addEventListener("click", function () {
-            const container = document.getElementById("blockContainer");
-            const blockCount = container.children.length + 1;
-
-            const newBlock = document.createElement("div");
-            newBlock.className = "card mb-4";
-            newBlock.id = `block${blockCount}`;
-
-            newBlock.innerHTML = `
-                <div class="card-header">
-                    <h5>Tiers de confiance ${blockCount}</h5>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-3 mb-1">
-                            <input type="checkbox" class="form-check-input" name="tiersType[${blockCount - 1}]" id="famille${blockCount}" value="famille">
-                            <label for="famille${blockCount}" class="form-label">Famille</label>
-                        </div>
-                        <div class="col-md-3 mb-1">
-                            <input type="checkbox" class="form-check-input" name="tiersType[${blockCount - 1}]" id="amis${blockCount}" value="amis">
-                            <label for="amis${blockCount}" class="form-label">Amis</label>
-                        </div>
-                        <div class="col-md-3 mb-1">
-                            <input type="checkbox" class="form-check-input" name="tiersType[${blockCount - 1}]" id="auxiliaire${blockCount}" value="auxiliaire">
-                            <label for="auxiliaire${blockCount}" class="form-label">Auxiliaire de vie</label>
-                        </div>
-                        <div class="col-md-3 mb-1">
-                            <input type="checkbox" class="form-check-input" name="tiersType[${blockCount - 1}]" id="voisins${blockCount}" value="voisins">
-                            <label for="voisins${blockCount}" class="form-label">Voisins</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="ordrePreference${blockCount}" class="form-label">Ordre de préférence*</label>
-                            <input type="text" class="form-control" id="ordrePreference${blockCount}" name="ordrePreference[${blockCount - 1}]">
-                            <div id="ordrePreference${blockCount}Error" class="error-message"></div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="nomTiers${blockCount}" class="form-label">Nom*</label>
-                            <input type="text" class="form-control" id="nomTiers${blockCount}" name="nomTiers[${blockCount - 1}]">
-                            <div id="nomTiers${blockCount}Error" class="error-message"></div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="prenomTiers${blockCount}" class="form-label">Prénom*</label>
-                            <input type="text" class="form-control" id="prenomTiers${blockCount}" name="prenomTiers[${blockCount - 1}]">
-                            <div id="prenomTiers${blockCount}Error" class="error-message"></div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="emailTiers${blockCount}" class="form-label">Email*</label>
-                            <input type="email" class="form-control" id="emailTiers${blockCount}" name="emailTiers[${blockCount - 1}]">
-                            <div id="emailTiers${blockCount}Error" class="error-message"></div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="telephoneTiers${blockCount}" class="form-label">Téléphone*</label>
-                            <input type="tel" class="form-control" id="telephoneTiers${blockCount}" name="telephoneTiers[${blockCount - 1}]">
-                            <div id="telephoneTiers${blockCount}Error" class="error-message"></div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="proximiteDomicile${blockCount}" class="form-label">Proximité du domicile*</label>
-                            <input type="text" class="form-control" id="proximiteDomicile${blockCount}" name="proximiteDomicile[${blockCount - 1}]">
-                            <div id="proximiteDomicile${blockCount}Error" class="error-message"></div>
-                        </div>
-                    </div>
-                </div>
-            `;
-
-            container.appendChild(newBlock);
-        });
-
-        
-    </script>
+    <script src="controle.js"></script>
     <script src="Ajax.js"></script>
 </body>
 </html>

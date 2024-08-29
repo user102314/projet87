@@ -2,12 +2,10 @@ document.getElementById("submitBtn").addEventListener("click", function () {
     const form = document.getElementById("subscriptionForm");
     const formData = new FormData(form);
 
-    // Afficher toutes les données collectées par FormData
     for (const [key, value] of formData.entries()) {
         console.log(`${key}: ${value}`);
     }
 
-    // Convert form data to a plain object
     const dataObject = {};
     formData.forEach((value, key) => {
         if (dataObject[key]) {

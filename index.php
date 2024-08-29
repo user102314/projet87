@@ -4,29 +4,25 @@ $user = 'root';
 $password = '';
 $dbname = 'souscription';
 
-// Créer une connexion à la base de données
 $mysqli = new mysqli($host, $user, $password, $dbname);
 
-// Vérifier la connexion
 if ($mysqli->connect_error) {
     die("Connexion échouée : " . $mysqli->connect_error);
 }
 
-// Lire les données JSON envoyées par le client
 $input = file_get_contents('php://input');
 $data = json_decode($input, true);
 
 if (json_last_error() === JSON_ERROR_NONE) {
-    // Insertion des données personnelles dans la table abonnes
     $stmtAbonnes = $mysqli->prepare(
-        "INSERT INTO abonnes (civilite, nom, prenom, date_naissance, fixe, mobile, adresse, code_postal, ville, nom_naissance, email, lieu_naissance) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+        "INSERT INTO abonnes (civilite, nom, prenom, date_naissance, fixe, mobile, adresse, code_postal, ville, nom_naissance, email, lieu_naissance, date_ab, ref) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
     );
     $stmtAbonnes->bind_param(
-        "ssssssssssss",
+        "ssssssssssssss",
         $data['civility'], $data['nom'], $data['prenom'], $data['dateNaissance'],
         $data['fixe'], $data['mobile'], $data['adresse'], $data['codePostal'],
-        $data['ville'], $data['nomNaissance'], $data['email'], $data['lieuNaissance']
+        $data['ville'], $data['nomNaissance'], $data['email'], $data['lieuNaissance'], $data['Date'], $data['Ref']
     );
 
     if ($stmtAbonnes->execute()) {
@@ -38,7 +34,6 @@ if (json_last_error() === JSON_ERROR_NONE) {
     }
     $stmtAbonnes->close();
 
-    // Gestion des données du médecin traitant
     if (isset($data['pasdemedicin']) && $data['pasdemedicin'] === 'on') {
         echo 'Pas de médecin traitant spécifié.<br>';
     } else {
@@ -62,36 +57,42 @@ if (json_last_error() === JSON_ERROR_NONE) {
         }
     }
 
-    // Insertion des tiers de confiance
-    if (isset($data['prenom'], $data['ordrePreference1'], $data['nom'], $data['email'], $data['telephone'], $data['proximiteDomicile']) &&
+    if (isset($data['prenom'], $data['ordrePreference1'], $data['nom'], $data['email'], $data['telephone'], $data['proximiteDomicile'],
+        $data['famille'], $data['amis'], $data['auxiliaire'], $data['voisins'], $data['condition1'], $data['condition2']) &&
         is_array($data['prenom']) &&
         is_array($data['ordrePreference1']) &&
         is_array($data['nom']) &&
         is_array($data['email']) &&
         is_array($data['telephone']) &&
-        is_array($data['proximiteDomicile'])
+        is_array($data['proximiteDomicile']) &&
+        is_array($data['famille']) &&
+        is_array($data['amis']) &&
+        is_array($data['auxiliaire']) &&
+        is_array($data['voisins']) &&
+        is_array($data['condition1']) &&
+        is_array($data['condition2'])
     ) {
         $count = count($data['prenom']);
-        if (
-            count($data['ordrePreference1']) === $count &&
+        if (count($data['ordrePreference1']) === $count &&
             count($data['nom']) === $count &&
             count($data['email']) === $count &&
             count($data['telephone']) === $count &&
-            count($data['proximiteDomicile']) === $count
+            count($data['proximiteDomicile']) === $count &&
+            count($data['famille']) === $count &&
+            count($data['amis']) === $count &&
+            count($data['auxiliaire']) === $count &&
+            count($data['voisins']) === $count &&
+            count($data['condition1']) === $count &&
+            count($data['condition2']) === $count
         ) {
-            $placeholders = implode(',', array_fill(0, $count, '(?, ?, ?, ?, ?, ?, ?)'));
-            // Déboguer les données reçues
-            print_r($data);
+            $placeholders = implode(',', array_fill(0, $count, '(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'));
 
-            // Requête SQL
-            $sql = "INSERT INTO tiers_de_confiance (abonnes_id, ordre_preference, prenom, nom, email, telephone, proximite_domicile) VALUES $placeholders";
+            $sql = "INSERT INTO tiers_confiance (id_abonne, ordre, famille, amis, auxiliaire, voisins, prenom, nom, email, telephone, proximite_domicile, condition1, condition2) VALUES $placeholders";
 
-            // Préparer la requête
             if (!$stmtTiers = $mysqli->prepare($sql)) {
                 die('Erreur de préparation de la requête : ' . $mysqli->error);
             }
 
-            // Préparer les paramètres
             $params = [];
             foreach ($data['prenom'] as $index => $prenomTiers) {
                 if (!empty($prenomTiers) && !empty($data['ordrePreference1'][$index]) && 
@@ -99,25 +100,28 @@ if (json_last_error() === JSON_ERROR_NONE) {
                     !empty($data['telephone'][$index]) && !empty($data['proximiteDomicile'][$index])) {
                     $params[] = $abonnesId;
                     $params[] = $data['ordrePreference1'][$index];
+                    $params[] = $data['famille'][$index] === 'on' ? 1 : 0;
+                    $params[] = $data['amis'][$index] === 'on' ? 1 : 0;
+                    $params[] = $data['auxiliaire'][$index] === 'on' ? 1 : 0;
+                    $params[] = $data['voisins'][$index] === 'on' ? 1 : 0;
                     $params[] = $prenomTiers;
                     $params[] = $data['nom'][$index];
                     $params[] = $data['email'][$index];
                     $params[] = $data['telephone'][$index];
                     $params[] = $data['proximiteDomicile'][$index];
+                    $params[] = $data['condition1'][$index] === 'on' ? 1 : 0;
+                    $params[] = $data['condition2'][$index] === 'on' ? 1 : 0;
                 } else {
                     echo 'Certaines informations pour les tiers de confiance sont manquantes.<br>';
                     return;
                 }
             }
 
-            // Types des paramètres
-            $types = str_repeat('s', count($params));
+            $types = str_repeat('i', count($params)); 
             array_unshift($params, $types);
 
-            // Bind des paramètres
             call_user_func_array([$stmtTiers, 'bind_param'], refValues($params));
 
-            // Exécution de la requête
             if (!$stmtTiers->execute()) {
                 echo 'Erreur lors de l\'insertion des tiers de confiance : ' . $stmtTiers->error . '<br>';
             } else {
@@ -135,11 +139,9 @@ if (json_last_error() === JSON_ERROR_NONE) {
     echo 'Erreur de décodage JSON : ' . json_last_error_msg() . '<br>';
 }
 
-// Fermer la connexion
 $mysqli->close();
 
 /**
- * Convertit un tableau de paramètres en un tableau de références pour bind_param.
  */
 function refValues($arr) {
     $refs = [];

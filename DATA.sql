@@ -10,7 +10,10 @@ CREATE TABLE abonnes (
     code_postal VARCHAR(10) NOT NULL,
     ville VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
-    lieu_naissance VARCHAR(100) NOT NULL
+    lieu_naissance VARCHAR(100) NOT NULL,
+    date_ab DATE NOT NULL,
+    ref VARCHAR(100) NOT NULL
+
 );
 
 CREATE TABLE medecins_traitants (
@@ -37,5 +40,7 @@ CREATE TABLE tiers_confiance (
     nom VARCHAR(50),
     email VARCHAR(100),
     telephone VARCHAR(20),
+    condition1 BOOLEAN,
+    condition2 BOOLEAN,
     FOREIGN KEY (id_abonne) REFERENCES abonnes(id_abonne)
 );
